@@ -1,7 +1,7 @@
 package com.KrupoderovMikhail.github.telegrambot.services;
 
 import com.KrupoderovMikhail.github.telegrambot.logger.Logging;
-import com.KrupoderovMikhail.github.telegrambot.bot.TemplateBot;
+import com.KrupoderovMikhail.github.telegrambot.bot.Bot;
 import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +12,21 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * @author Krupoderov Mikhail
+ * @version 1.0
+ */
 @Service
 public class MessageSenderImpl implements MessageSender {
+
     private static final Map<Long, Long> usersChats = new ConcurrentHashMap<>();
-    private TemplateBot bot;
+    private Bot bot;
 
     @Logging
     private Logger logger;
 
     @Autowired
-    public void setBot(TemplateBot bot) {
+    public void setBot(Bot bot) {
         this.bot = bot;
     }
 

@@ -23,7 +23,8 @@ import java.util.concurrent.Executors;
  * @version 1.0
  */
 @Component
-public class TemplateBot extends TelegramLongPollingBot {
+public class Bot extends TelegramLongPollingBot {
+
     private static final int DISCARD_MESSAGE_DURATION = 5; // seconds
     private static final String START = "/start";
     private static final String HELLO = "/hello";
@@ -50,11 +51,11 @@ public class TemplateBot extends TelegramLongPollingBot {
         this.messageSender = messageSender;
     }
 
-    public TemplateBot(DefaultBotOptions options) {
+    public Bot(DefaultBotOptions options) {
         super(options);
     }
 
-    public TemplateBot() {
+    public Bot() {
     }
 
     @Override

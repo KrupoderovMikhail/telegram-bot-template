@@ -5,6 +5,7 @@ package com.KrupoderovMikhail.github.telegrambot.utils;
  * @version 1.0
  */
 public class StringUtils {
+
     public static boolean isNumeric(String str) {
         return str.matches("-?\\d+(\\.\\d+)?");
     }

@@ -1,7 +1,7 @@
 package com.KrupoderovMikhail.github.telegrambot.config;
 
 import com.KrupoderovMikhail.github.telegrambot.logger.Logging;
-import com.KrupoderovMikhail.github.telegrambot.bot.TemplateBot;
+import com.KrupoderovMikhail.github.telegrambot.bot.Bot;
 import com.KrupoderovMikhail.github.telegrambot.utils.StringUtils;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -18,10 +18,14 @@ import org.springframework.core.env.Environment;
 import org.telegram.telegrambots.ApiContext;
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 
-
+/**
+ * @author Krupoderov Mikhail
+ * @version 1.0
+ */
 @Configuration
 @PropertySource("classpath:application.properties")
 public class ProxyConfig {
+
     private static final String PROXY_HOST_PROPERTY_NAME = "telegram.proxy.host";
     private static final String PROXY_PORT_PROPERTY_NAME = "telegram.proxy.port";
     private static final String PROXY_LOGIN_PROPERTY_NAME = "telegram.proxy.login";
@@ -34,7 +38,7 @@ public class ProxyConfig {
     private Logger logger;
 
     @Bean
-    public TemplateBot templateBot() {
+    public Bot templateBot() {
         String proxyHost = env.getProperty(PROXY_HOST_PROPERTY_NAME);
         String proxyPort = env.getProperty(PROXY_PORT_PROPERTY_NAME);
         String login = env.getProperty(PROXY_LOGIN_PROPERTY_NAME);
@@ -44,14 +48,14 @@ public class ProxyConfig {
             HttpHost host = new HttpHost(proxyHost, Integer.parseInt(proxyPort));
             if (isPropertyExists(login) && isPropertyExists(password)) {
                 logger.info("Template bot has been created with auth proxy server.");
-                return new TemplateBot(proxyWithAuth(host, login, password));
+                return new Bot(proxyWithAuth(host, login, password));
             }
             logger.info("Template bot has been created with no auth proxy server.");
-            return new TemplateBot(proxyWithoutAuth(host));
+            return new Bot(proxyWithoutAuth(host));
         }
 
         logger.info("Template bot has been created without any proxy server.");
-        return new TemplateBot();
+        return new Bot();
     }
 
     private static boolean isPropertyExists(String property) {

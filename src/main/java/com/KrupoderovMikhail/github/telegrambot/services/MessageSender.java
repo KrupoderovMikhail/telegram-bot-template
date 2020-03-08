@@ -2,7 +2,12 @@ package com.KrupoderovMikhail.github.telegrambot.services;
 
 import org.jetbrains.annotations.NotNull;
 
+/**
+ * @author Krupoderov Mikhail
+ * @version 1.0
+ */
 public interface MessageSender {
+
     /**
      * @param userId  user ID
      * @param message sent message

@@ -13,6 +13,7 @@ import java.lang.reflect.Field;
  * @version 1.0
  */
 public class LoggingAnnotationProcessor implements BeanPostProcessor {
+
     @Nullable
     @Override
     public Object postProcessBeforeInitialization(@NotNull Object bean, String beanName) throws BeansException {
